@@ -3,7 +3,7 @@
 namespace h4kuna\Ares\Tools;
 
 use h4kuna\Ares\Exceptions\ServerResponseException;
-use JsonException;
+use Nette\Utils\JsonException;
 use Nette\Utils\Json;
 use Psr\Http\Message\ResponseInterface;
 use SimpleXMLElement;
