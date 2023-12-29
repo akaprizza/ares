@@ -11,9 +11,15 @@ use h4kuna\Ares\Tools\Batch;
 
 final class ContentProvider
 {
-	public function __construct(private Client $client, private StatusBusinessSubjectsTransformer $stdClassTransformer)
+    private Client $client;
+
+    private StatusBusinessSubjectsTransformer $stdClassTransformer;
+
+    public function __construct(Client $client, StatusBusinessSubjectsTransformer $stdClassTransformer)
 	{
-	}
+        $this->stdClassTransformer = $stdClassTransformer;
+        $this->client = $client;
+    }
 
 
 	public function statusBusinessSubject(string $tin): Subject

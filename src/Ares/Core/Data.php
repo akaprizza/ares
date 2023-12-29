@@ -8,12 +8,11 @@ use h4kuna\Ares\Ares\Sources;
 use h4kuna\Ares\Tools\Strings;
 use JsonSerializable;
 use stdClass;
-use Stringable;
 
 /**
  * @phpstan-type DataType array<string, mixed>
  */
-class Data implements JsonSerializable, Stringable
+class Data implements JsonSerializable
 {
 	public bool $active;
 
@@ -87,7 +86,7 @@ class Data implements JsonSerializable, Stringable
 	/**
 	 * @return array<string, scalar|array<string>>
 	 */
-	public function jsonSerialize(): mixed
+	public function jsonSerialize()
 	{
 		$data = $this->toArray();
 

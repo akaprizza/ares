@@ -14,14 +14,23 @@ final class ContentProvider
 {
 	private const BATCH = 100; // max identification numbers per request
 
+    private JsonToDataTransformer $jsonTransformer;
 
-	public function __construct(
-		private JsonToDataTransformer $jsonTransformer,
-		private Client $client,
-		private Adis\ContentProvider $adisContentProvider,
+    private Client $client;
+
+    private Adis\ContentProvider $adisContentProvider;
+
+
+    public function __construct(
+		JsonToDataTransformer $jsonTransformer,
+		Client $client,
+		Adis\ContentProvider $adisContentProvider
 	)
 	{
-	}
+        $this->adisContentProvider = $adisContentProvider;
+        $this->client = $client;
+        $this->jsonTransformer = $jsonTransformer;
+    }
 
 
 	/**

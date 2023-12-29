@@ -14,16 +14,28 @@ use Psr\Http\Message\StreamInterface;
 
 final class TransportProvider
 {
-	public function __construct(
-		private RequestFactoryInterface $requestFactory,
-		private ClientInterface $client,
-		private StreamFactoryInterface $streamFactory,
+    private RequestFactoryInterface $requestFactory;
+
+    private ClientInterface $client;
+
+    private StreamFactoryInterface $streamFactory;
+
+    public function __construct(
+		RequestFactoryInterface $requestFactory,
+		ClientInterface $client,
+		StreamFactoryInterface $streamFactory
 	)
 	{
-	}
+        $this->streamFactory = $streamFactory;
+        $this->client = $client;
+        $this->requestFactory = $requestFactory;
+    }
 
 
-	public function response(RequestInterface|string $url): ResponseInterface
+    /**
+     * @param RequestInterface|string $url
+     */
+    public function response($url): ResponseInterface
 	{
 		$request = $url instanceof RequestInterface ? $url : $this->createRequest($url);
 		try {
@@ -57,7 +69,10 @@ final class TransportProvider
 	}
 
 
-	public function createXmlRequest(string $url, string|StreamInterface $body): RequestInterface
+    /**
+     * @param string|StreamInterface $body
+     */
+    public function createXmlRequest(string $url, $body): RequestInterface
 	{
 		if (is_string($body)) {
 			$body = $this->streamFactory->createStream($body);

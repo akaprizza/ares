@@ -13,7 +13,10 @@ use Psr\Http\Message\StreamFactoryInterface;
 
 final class AresFactory
 {
-	private null|GuzzleHttp\Psr7\HttpFactory|HttpFactory $httpFactory = null;
+    /**
+     * @var GuzzleHttp\Psr7\HttpFactory|HttpFactory|null
+     */
+    private ?RequestFactoryInterface $httpFactory = null;
 
 
 	public function create(): Ares

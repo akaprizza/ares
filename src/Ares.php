@@ -12,13 +12,22 @@ class Ares
 {
 	use MemoryStorage;
 
-	public function __construct(
-		private Ares\Client $aresClient,
-		private DataBox\ContentProvider $dataBoxContentProvider,
-		private Adis\ContentProvider $adisContentProvider,
+    private Ares\Client $aresClient;
+
+    private DataBox\ContentProvider $dataBoxContentProvider;
+
+    private Adis\ContentProvider $adisContentProvider;
+
+    public function __construct(
+		Ares\Client $aresClient,
+		DataBox\ContentProvider $dataBoxContentProvider,
+		Adis\ContentProvider $adisContentProvider
 	)
 	{
-	}
+        $this->adisContentProvider = $adisContentProvider;
+        $this->dataBoxContentProvider = $dataBoxContentProvider;
+        $this->aresClient = $aresClient;
+    }
 
 
 	public function getAdis(): Adis\ContentProvider

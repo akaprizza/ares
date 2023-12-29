@@ -7,12 +7,18 @@ use stdClass;
 
 class ContentProvider
 {
-	public function __construct(
-		private Client $client,
-		private StreamFactoryInterface $streamFactory,
+    private StreamFactoryInterface $streamFactory;
+
+    private Client $client;
+
+    public function __construct(
+		Client $client,
+		StreamFactoryInterface $streamFactory
 	)
 	{
-	}
+        $this->client = $client;
+        $this->streamFactory = $streamFactory;
+    }
 
 
 	/**

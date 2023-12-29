@@ -112,10 +112,16 @@ final class Helper
 
 	public static function isPerson(int $legalForm): bool
 	{
-		return match ($legalForm) {
-			SubjectType::OSVC, 105, 107, 424, 425 => true,
-			default => false,
-		};
+        switch ($legalForm) {
+            case SubjectType::OSVC:
+            case 105:
+            case 107:
+            case 424:
+            case 425:
+                return true;
+            default:
+                return false;
+        }
 	}
 
 
@@ -161,7 +167,7 @@ final class Helper
 	public static function normalizeTIN(string $tin): string
 	{
 		$upper = strtoupper($tin);
-		if (str_starts_with($upper, 'CZ') === false && is_numeric($upper)) {
+		if (strpos($upper, 'CZ') !== 0 && is_numeric($upper)) {
 			return "CZ$upper";
 		}
 

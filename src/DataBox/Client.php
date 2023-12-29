@@ -16,12 +16,15 @@ final class Client
 {
 	public static string $url = 'https://www.mojedatovaschranka.cz/sds/ws/call';
 
+    private TransportProvider $requestProvider;
 
-	public function __construct(
-		private TransportProvider $requestProvider,
+
+    public function __construct(
+		TransportProvider $requestProvider
 	)
 	{
-	}
+        $this->requestProvider = $requestProvider;
+    }
 
 
 	public function request(StreamInterface $body): stdClass

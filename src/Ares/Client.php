@@ -14,11 +14,14 @@ use stdClass;
 class Client
 {
 
-	public function __construct(
-		private TransportProvider $transportProvider,
+    private TransportProvider $transportProvider;
+
+    public function __construct(
+		TransportProvider $transportProvider
 	)
 	{
-	}
+        $this->transportProvider = $transportProvider;
+    }
 
 
 	/**
